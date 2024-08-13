@@ -1,0 +1,17 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+
+    <div class="container mt-5">
+        <h1>Eliminar Categoría</h1>
+        <p>¿Estás seguro de que deseas eliminar la categoría <strong th:text="${category.category}"></strong>?</p>
+        <form th:action="@{/category/delete/{id}(id=${category.id})}" method="post">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a th:href="@{/category}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+</div>
+

@@ -1,0 +1,32 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <div class="container">
+        <h1 class="mt-4">Roles</h1>
+        <a href="/templates/rol/create" class="btn btn-primary mb-3">Crear Nuevo Rol</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rol : ${rol}">
+                <td th:text="${rol.id}"></td>
+                <td th:text="${rol.rol}"></td>
+                <td>
+                    <a href="/templates/rol/details/{id}" th:href="@{'/rol/details/' + ${rol.id}}" class="btn btn-info">Detalles</a>
+                    <a href="/templates/rol/edit/{id}" th:href="@{'/rol/edit/' + ${rol.id}}" class="btn btn-warning">Editar</a>
+                    <a href="/templates/rol/delete/{id}" th:href="@{'/rol/delete/' + ${rol.id}}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este rol?');">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

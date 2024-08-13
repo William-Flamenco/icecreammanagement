@@ -1,0 +1,18 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <div class="container">
+        <h1 class="mt-4">Crear Rol</h1>
+        <form th:action="@{/rol/create}" th:object="${role}" method="post">
+            <div class="mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <input type="text" class="form-control" id="rol" th:field="*{rol}" name="rol" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/templates/rolplates/rol" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
