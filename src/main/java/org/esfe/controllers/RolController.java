@@ -25,22 +25,8 @@ public class RolController {
     private IRolService rolService;
 
     @GetMapping
-    public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
-        int currentPage = page.orElse(1) - 1;
-        int pageSize = size.orElse(5);
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
-
-        Page<Rol> roles = rolService.findAll(pageable);
-        model.addAttribute("roles", roles);
-
-        int totalPages = roles.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-
+    public String index(Model model) {
+        model.addAttribute("user", rolService.findAll());
         return "rol/index";
     }
 
@@ -83,10 +69,25 @@ public class RolController {
         return "rol/delete";
     }
 
+
     @PostMapping("/delete")
-    public String delete(Rol rol, RedirectAttributes attributes){
-        rolService.deleteOneById(rol.getId());
-        attributes.addFlashAttribute("msg", "Rol eliminado correctamente");
+    public String delete(@RequestParam("id") Integer id, RedirectAttributes attributes) {
+        Optional<Rol> rolOpt = rolService.findOneById(id);
+        if (rolOpt.isPresent()) {
+            Rol rol = rolOpt.get();
+            // Verificar si el rol tiene usuarios asociados
+            if (rol.getUsers().isEmpty()) {
+                // Eliminar el rol si no tiene usuarios asociados
+                rolService.deleteOneById(id);
+                attributes.addFlashAttribute("msg2", "Rol eliminado correctamente");
+            } else {
+                // Si hay usuarios asociados, mostrar un mensaje de error
+                attributes.addFlashAttribute("error", "No se puede eliminar el rol porque está asociado a uno o más usuarios.");
+            }
+        } else {
+            attributes.addFlashAttribute("error", "Rol no encontrado");
+        }
         return "redirect:/roles";
     }
+
 }

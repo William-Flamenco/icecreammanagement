@@ -1,0 +1,43 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <h1>Crear Usuario</h1>
+
+    <form th:action="@{/users/save}" th:object="${user}" method="post">
+        <div>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" th:field="*{name}" />
+        </div>
+        <div>
+            <label for="lastname">Apellido:</label>
+            <input type="text" id="lastname" th:field="*{lastname}" />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" />
+        </div>
+        <div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" th:field="*{password}" />
+        </div>
+        <div>
+            <label for="rol">Rol:</label>
+            <select id="rol" th:field="*{rol}">
+                <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.rolname}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Estado:</label>
+            <select class="form-control" id="status" th:field="*{status}" required>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+        </div>
+        <button type="submit"  class="btn btn-outline-primary">Crear</button>
+        <a th:href="@{/users}"  class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
+</html>

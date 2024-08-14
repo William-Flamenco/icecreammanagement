@@ -1,32 +1,46 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="/layouts/_mainLayout">
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div layout:fragment="content">
-    <div class="container">
-        <h1 class="mt-4">Roles</h1>
-        <a href="/templates/rol/create" class="btn btn-primary mb-3">Crear Nuevo Rol</a>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="rol : ${rol}">
-                <td th:text="${rol.id}"></td>
-                <td th:text="${rol.rol}"></td>
-                <td>
-                    <a href="/templates/rol/details/{id}" th:href="@{'/rol/details/' + ${rol.id}}" class="btn btn-info">Detalles</a>
-                    <a href="/templates/rol/edit/{id}" th:href="@{'/rol/edit/' + ${rol.id}}" class="btn btn-warning">Editar</a>
-                    <a href="/templates/rol/delete/{id}" th:href="@{'/rol/delete/' + ${rol.id}}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este rol?');">Eliminar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
+    <!-- Mostrar mensaje de éxito si está presente -->
+    <div th:if="${msg}" class="alert alert-success">
+        <p th:text="${msg}"></p>
+    </div>
+    <!-- Mostrar mensaje de éxito si está presente -->
+    <div th:if="${msg2}" class="alert alert-warning">
+        <p th:text="${msg2}"></p>
+    </div>
+
+    <!-- Mostrar mensaje de error si está presente -->
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
+
+
+    <h1>Listado de roles</h1>
+    <a th:href="@{/roles/create}" class="btn btn-outline-primary">Nuevo rol</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rol : ${user}">
+            <td th:text="${rol.id}"></td>
+            <td th:text="${rol.rolname}"></td>
+            <td>
+                <a th:href="@{/roles/details/{id} (id = ${rol.id}) }" class="btn btn-outline-info">Detalles</a> |
+                <a th:href="@{/roles/edit/{id} (id = ${rol.id}) }" class="btn btn-outline-warning">Editar</a> |
+                <a th:href="@{/roles/remove/{id} (id = ${rol.id}) }" class="btn btn-outline-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</html>

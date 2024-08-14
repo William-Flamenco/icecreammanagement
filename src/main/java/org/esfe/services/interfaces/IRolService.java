@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRolService {
-    Page<Rol> findAll(Pageable pageable);
+    List<Rol> findAll(); // Método adicional sin paginación
 
     List<Rol> getAll();
 

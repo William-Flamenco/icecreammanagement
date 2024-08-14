@@ -1,0 +1,48 @@
+<html lang="en"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <br>
+    <h1 class="text-center">¡Bienvenidos!</h1>
+    <br><hr>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <!-- Basic Card 1 Example -->
+                <div class="card shadow mb-4 border-left-danger">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">"El único modo de hacer un gran trabajo es amar lo que haces." - Steve Jobs</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 id="time" class="font-weight-bold"></h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <!-- Basic Card 2 Example -->
+                <div class="card shadow mb-4 border-left-danger">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Información del Dispositivo y Conexión</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 id="os"></h5>
+                        <h5 id="browser"></h5>
+                        <h5 id="resolution"></h5>
+                        <h5 id="connection-status"></h5>
+                        <h5 id="connection-speed"></h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+

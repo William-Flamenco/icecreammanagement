@@ -1,5 +1,6 @@
 package org.esfe.controllers;
 
+import jakarta.validation.Valid;
 import org.esfe.models.User;
 import org.esfe.services.interfaces.IRolService;
 import org.esfe.services.interfaces.IUserService;
@@ -21,7 +22,7 @@ import java.util.stream.IntStream;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-/*
+
     @Autowired
     private IUserService userService;
 
@@ -62,7 +63,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String save(User user, BindingResult result, Model model, RedirectAttributes attributes){
+    public String save(@Valid User user, BindingResult result, Model model, RedirectAttributes attributes){
         if(result.hasErrors()){
             model.addAttribute("roles", rolService.findAll());
             attributes.addFlashAttribute("error", "No se pudo guardar debido a un error.");
@@ -92,10 +93,10 @@ public class UserController {
     @PostMapping("/delete")
     public String delete(User user, RedirectAttributes attributes){
         userService.deleteOneById(user.getId());
-        attributes.addFlashAttribute("msg", "Usuario eliminado correctamente");
+        attributes.addFlashAttribute("msg2", "Usuario eliminado correctamente");
         return "redirect:/users";
     }
-    */
+
 }
 
 

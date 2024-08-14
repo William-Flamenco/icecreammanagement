@@ -18,9 +18,10 @@ public class RolService  implements IRolService {
     private RolRepository rolRepository;
 
     @Override
-    public Page<Rol> findAll(Pageable pageable) {
-        return rolRepository.findAll(pageable);
+    public List<Rol> findAll() {
+        return rolRepository.findAll();
     }
+
 
     @Override
     public List<Rol> getAll() {
