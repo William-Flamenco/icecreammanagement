@@ -14,6 +14,9 @@ public interface ICategoryService {
 
   List<Category> getAll();
 
+
+  List<Category> findAll();
+
   Optional<Category>  findOneById(Integer rolId);
 
   Category createOrEditOne (Category category);
